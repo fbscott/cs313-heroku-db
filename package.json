@@ -1,0 +1,31 @@
+{
+  "name": "cs313-heroku-db",
+  "version": "1.0.0",
+  "description": "CS 313 Heroku db exercise",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fbscott/cs313-heroku-db.git"
+  },
+  "keywords": [
+    "node",
+    "heroku"
+  ],
+  "author": "Scott Currell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fbscott/cs313-heroku-db/issues"
+  },
+  "homepage": "https://github.com/fbscott/cs313-heroku-db#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node": "^14.15.1",
+    "pg": "^8.5.1",
+    "pg-pool": "^3.2.2",
+    "underscore": "^1.11.0"
+  }
+}
