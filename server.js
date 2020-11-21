@@ -11,7 +11,7 @@ const { Pool }         = require('pg');
 const pool             = new Pool({connectionString: connectionString});
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0" // Avoids DEPTH_ZERO_SELF_SIGNED_CERT error for self-signed certs
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0' // Avoids DEPTH_ZERO_SELF_SIGNED_CERT error for self-signed certs
 
 var sql = 'SELECT * FROM person';
 
@@ -37,6 +37,40 @@ APP.set('view engine', 'ejs'); // render .ejs files as views
 APP.get('/', (req, res) => {
     res.sendFile(PATH.join(__dirname + '/public/index.htm'));
 });
+
+
+
+
+
+
+APP.get('/getPerson', function(req, res) {
+
+    const id = req.query.id;
+    // res.render('');
+
+    var sql = 'SELECT * FROM person WHERE id = $1';
+    var values = [id];
+
+    pool.query(sql, values, function(err, result) {
+        // If an error occurred...
+        if (err) {
+            console.log('Error in query: ')
+            console.log(err);
+        }
+
+        // Log this to the console for debugging purposes.
+        console.log('Back from DB with result:');
+        console.log(result.rows);
+
+        res.json(result.rows);
+    });
+
+});
+
+
+
+
+
 
 APP.listen(PORT, () => {
     console.log('Listening on ' + PORT);

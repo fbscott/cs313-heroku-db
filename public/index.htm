@@ -11,5 +11,36 @@
       <h1>Heroku DB Test</h1>
     </div>
   </div>
+  <div class="row">
+    <div class="column">
+      <form id="myForm" class="Hi" action="/getPerson" method="get">
+      <input id="person" type="text" name="id" value="">
+      <button type="button" onClick="showResult('/getPerson')" name="button">Get Details</button>
+      <!-- <button type="button" onClick="showResult('/getParents')" name="button">Get Parents</button> -->
+      <!-- <button type="button" onClick="showResult('/getChildren')" name="button">Get Children</button> -->
+      </form>
+      <p id="result"></p>
+    </div>
+  </div>
+  <script>
+    function showResult(route) {
+        var person = document.getElementById('person').value;
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var response = JSON.parse(this.responseText);
+
+                document.getElementById('result').innerHTML = '';
+
+                for (var i = 0; i < response.length; i++) {
+                  document.getElementById('result').innerHTML += 'The answer is: ' + response[i]['first'] + ' ' + response[i]['last'];
+                }
+            }
+        };
+        xhttp.open('GET', route + '?id=' + person, true);
+        xhttp.send();
+    }
+  </script>
 </body>
 </html>
