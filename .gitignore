@@ -1,6 +1,11 @@
 # Node build artifacts
 node_modules
+
+# folders
 npm-debug.log
 db
+teach
 
+# files
 **/*.sublime-workspace
+**/*.zip

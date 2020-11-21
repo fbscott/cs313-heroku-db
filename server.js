@@ -38,4 +38,6 @@ APP.get('/', (req, res) => {
     res.sendFile(PATH.join(__dirname + '/public/index.htm'));
 });
 
-APP.listen(PORT);
+APP.listen(PORT, () => {
+    console.log('Listening on ' + PORT);
+});
