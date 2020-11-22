@@ -3,42 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Heroku DB Test</title>
+  <link rel="stylesheet" href="./assets/css/_reset.css">
+  <link rel="stylesheet" href="./assets/css/_base.css">
+  <link rel="stylesheet" href="./assets/css/_grid.css">
+  <link rel="stylesheet" href="./assets/css/_week_10.css">
+  <title>U.S. Presidents</title>
 </head>
 <body>
   <div class="row">
     <div class="column">
-      <h1>Heroku DB Test</h1>
+      <h1>U.S. Presidents</h1>
     </div>
   </div>
   <div class="row">
-    <div class="column">
-      <form id="myForm" class="Hi" action="/getPerson" method="get">
-      <input id="person" type="text" name="id" value="">
-      <button type="button" onClick="showResult('/getPerson')" name="button">Get Details</button>
-      <!-- <button type="button" onClick="showResult('/getParents')" name="button">Get Parents</button> -->
-      <!-- <button type="button" onClick="showResult('/getChildren')" name="button">Get Children</button> -->
-      </form>
-      <p id="result"></p>
-    </div>
+    <form id="myForm" action="/getPresident" method="get">
+      <div class="large-6 columns">
+        <!-- <input id="president" type="text" name="id" value=""> -->
+        <select name="" id="president">
+          <script>
+            var option = `<option value="" selected="true" disabled> -- </option>`;
+
+            for (var i = 1; i <= 45; i++) {
+              option += `<option value="${i}">${i}</option>`;
+            }
+
+            document.write(option);
+          </script>
+        </select>
+      </div>
+      <div class="large-6 columns">
+        <button type="button" onClick="showResult('/getPresident')" name="button">Get Details</button>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <div id="result" class="column"></div>
   </div>
   <script>
     function showResult(route) {
-        var person = document.getElementById('person').value;
+        var president = document.getElementById('president').value;
         var xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var response = JSON.parse(this.responseText);
+                var table = `<div class="row">
+                              <div class="column">
+                                <table>
+                                  <tr>
+                                    <th>President</th>
+                                    <th>Party</th>
+                                    <th>Image</th>
+                                  </tr>`;
 
                 document.getElementById('result').innerHTML = '';
 
                 for (var i = 0; i < response.length; i++) {
-                  document.getElementById('result').innerHTML += 'The answer is: ' + response[i]['first'] + ' ' + response[i]['last'];
+                  document.getElementById('result').innerHTML += 'President: ' + response[i]['first'] + ' ' + response[i]['last'];
+                  table += `<tr>
+                              <td>${response[i]['first']} ${response[i]['last']}</td>
+                              <td>${response[i]['party']}</td>
+                              <td><img src="./assets/img/${response[i]['image']}" alt="Image of President ${response[i]['first']} ${response[i]['last']}"></td>
+                            </tr>`
                 }
+
+                table += '</div></div></table>';
+
+                document.getElementById('result').innerHTML = table;
             }
         };
-        xhttp.open('GET', route + '?id=' + person, true);
+        xhttp.open('GET', route + '?id=' + president, true);
         xhttp.send();
     }
   </script>
