@@ -34,14 +34,12 @@
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var response = JSON.parse(this.responseText);
-                var table = `<div class="row">
-                              <div class="column">
-                                <table>
-                                  <tr>
-                                    <th>President</th>
-                                    <th>Party</th>
-                                    <th>Image</th>
-                                  </tr>`;
+                var table = `<table>
+                               <tr>
+                                 <th>President</th>
+                                 <th>Party</th>
+                                 <th>Image</th>
+                               </tr>`;
 
                 document.getElementById('result').innerHTML = '';
 
@@ -54,7 +52,7 @@
                             </tr>`
                 }
 
-                table += '</table></div></div>';
+                table += '</table>';
 
                 document.getElementById('result').innerHTML = table;
             }
