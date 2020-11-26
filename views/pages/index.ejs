@@ -2,64 +2,71 @@
   <title><%= title %></title>
 </head>
 <body>
+
   <div class="row">
     <div class="column">
       <h1><%= title %></h1>
-      <p><%= intro %></p>
+      <p><%= details %></p>
     </div>
   </div>
+
   <div class="row">
-    <form id="myForm" action="/getPresident" method="get">
+    <form action="/getPresident" method="get">
       <div class="large-6 columns">
         <select name="" id="president">
           <option value="" selected="true" disabled> -- </option>
           <% presidents.forEach(function(president, index) { %>
             <option value="<%= index + 1 %>"><%= president.first %> <%= president.middle %> <%= president.last %></option>
-          <% }); %>          
+          <% }); %>
         </select>
       </div>
       <div class="large-6 columns">
-        <button type="button" onClick="showResult('/getPresident')" name="button">Get Details</button>
+        <button type="button" onClick="PRES.showPresDetails('/getPresident')" name="button">Details</button>
       </div>
     </form>
   </div>
+
+  <div class="row">
+    <div class="column">
+      <p><%= party %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <form action="/getPresidentsByParty" method="get">
+      <div class="large-6 columns">
+        <select name="" id="party">
+          <option value="" selected="true" disabled> -- </option>
+          <option value="Unaffiliated">Unaffiliated</option>
+          <option value="Federalist">Federalist</option>
+          <option value="Democratic-Republican">Democratic-Republican</option>
+          <!-- <option value="National Republican">National Republican</option> -->
+          <option value="Democratic">Democratic</option>
+          <option value="Whig">Whig</option>
+          <option value="Republican">Republican</option>
+          <!-- <option value="National Union">National Union</option> -->
+          <!-- 
+
+
+          create a "parties" collection for use in the server.js
+
+
+           -->
+          <!-- <% parties.forEach(function(party, index) { %>
+            <option value="<%= index + 1 %>"><%= party.party %></option>
+          <% }); %> -->
+        </select>
+      </div>
+      <div class="large-6 columns">
+        <button type="button" onClick="PRES.showPresByParty('/getPresidentsByParty')" name="button">Party</button>
+      </div>
+    </form>
+  </div>
+
   <div class="row">
     <div id="result" class="column"></div>
   </div>
-  <script>
-    function showResult(route) {
-        var president = document.getElementById('president').value;
-        var xhttp = new XMLHttpRequest();
 
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var response = JSON.parse(this.responseText);
-                var table = `<table>
-                               <tr>
-                                 <th>President</th>
-                                 <th>Party</th>
-                                 <th>Image</th>
-                               </tr>`;
-
-                document.getElementById('result').innerHTML = '';
-
-                for (var i = 0; i < response.length; i++) {
-                  document.getElementById('result').innerHTML += 'President: ' + response[i]['first'] + ' ' + response[i]['last'];
-                  table += `<tr>
-                              <td>${response[i]['first']} ${response[i]['middle']} ${response[i]['last']}</td>
-                              <td>${response[i]['party']}</td>
-                              <td><img src="./assets/img/${response[i]['image']}" alt="Image of President ${response[i]['first']} ${response[i]['last']}"></td>
-                            </tr>`
-                }
-
-                table += '</table>';
-
-                document.getElementById('result').innerHTML = table;
-            }
-        };
-        xhttp.open('GET', route + '?id=' + president, true);
-        xhttp.send();
-    }
-  </script>
+  <%- include('../partials/xhr.ejs') %>
 </body>
 </html>

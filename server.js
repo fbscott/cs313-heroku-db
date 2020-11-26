@@ -24,7 +24,8 @@ APP.set('view engine', 'ejs'); // render .ejs files as views
 
 APP.get('/', (req, res) => {
     let _title = 'U.S. Presidents';
-    let _intro = 'Select a U.S. president by index (the order in which they served).';
+    let _details = 'Select a U.S. president to view details.';
+    let _party = 'View a list of presidents by party affiliation.';
     var sql = `SELECT first, middle, last, party, image
                FROM president AS pres
                JOIN details AS d
@@ -48,7 +49,9 @@ APP.get('/', (req, res) => {
         // res.sendFile(PATH.join(__dirname + '/public/index.htm'));
         res.render('pages/index', {
             title: _title,
-            intro: _intro,
+            details: _details,
+            party: _party,
+            parties: result.rows,
             presidents: result.rows
         });
     });
@@ -65,6 +68,36 @@ APP.get('/getPresident', function(req, res) {
                    JOIN party as p
                    ON p.id = d.party_id
                    WHERE pres.id = $1`;
+    let _values = [_id];
+
+    pool.query(_sql, _values, function(err, result) {
+        // var pres = new PRESIDENT(result.rows[0]);
+
+        // If an error occurred...
+        if (err) {
+            console.log('Error in query: ')
+            console.log(err);
+        }
+
+        // Log this to the console for debugging purposes.
+        // console.log('Back from DB with result:');
+
+        res.json(result.rows);
+        // res.render('pages/test', pres);
+    });
+});
+
+APP.get('/getPresidentsByParty', function(req, res) {
+    const _id   = req.query.id;
+    const _sql  = `SELECT first, middle, last, party, image, president_id
+                   FROM president AS pres
+                   JOIN details AS d
+                   ON pres.id = d.president_id
+                   JOIN image as i
+                   ON i.id = d.image_id
+                   JOIN party as p
+                   ON p.id = d.party_id
+                   WHERE p.party = $1`;
     let _values = [_id];
 
     pool.query(_sql, _values, function(err, result) {
