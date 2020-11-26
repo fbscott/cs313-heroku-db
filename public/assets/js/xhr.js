@@ -8,7 +8,7 @@ var PRES = PRES || {};
  *****************************************************************************/
 PRES.getData = (url, callback) => {
     // placeholder while loading
-    PRES.presDetailsContainer.innerHTML = `<p>Loading . . .</p>`;
+    PRES.presDetailsContainer.innerHTML = `<div class="spinner"></div>`;
 
     let _xhr = new XMLHttpRequest();
 

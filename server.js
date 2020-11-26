@@ -43,9 +43,11 @@ APP.get('/', (req, res) => {
             console.log(err);
         }
 
-        // Log this to the console for debugging purposes.
-        // console.log('Back from DB with result:');
-        // console.log(result.rows);
+        // console.log({
+        //     route: '/',
+        //     result: result.rows
+        // });
+
         // res.sendFile(PATH.join(__dirname + '/public/index.htm'));
         res.render('pages/index', {
             title: _title,
@@ -79,8 +81,10 @@ APP.get('/getPresident', function(req, res) {
             console.log(err);
         }
 
-        // Log this to the console for debugging purposes.
-        // console.log('Back from DB with result:');
+        // console.log({
+        //     route: '/getPresident',
+        //     result: result.rows
+        // });
 
         res.json(result.rows);
         // res.render('pages/test', pres);
@@ -109,8 +113,10 @@ APP.get('/getPresidentsByParty', function(req, res) {
             console.log(err);
         }
 
-        // Log this to the console for debugging purposes.
-        // console.log('Back from DB with result:');
+        // console.log({
+        //     route: '/getPresidentsByParty',
+        //     result: result.rows
+        // });
 
         res.json(result.rows);
         // res.render('pages/test', pres);

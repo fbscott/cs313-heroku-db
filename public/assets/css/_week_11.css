@@ -1,0 +1,29 @@
+table {
+   margin-top: 2rem;
+}
+
+img {
+   width: initial;
+   height: initial;
+}
+
+.spinner {
+   border: 1.25rem solid #cccccc;
+   border-top: 1.25rem solid #040b28;
+   margin: 3.125rem auto 0;
+   border-radius: 50%;
+   width: 9.375rem;
+   height: 9.375rem;
+   -webkit-animation: spinner 500ms linear infinite;
+           animation: spinner 500ms linear infinite;
+}
+
+@-webkit-keyframes spinner {
+  0%   { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
