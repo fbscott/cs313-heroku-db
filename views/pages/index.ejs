@@ -37,24 +37,9 @@
       <div class="large-6 columns">
         <select name="" id="party">
           <option value="" selected="true" disabled> -- </option>
-          <option value="Unaffiliated">Unaffiliated</option>
-          <option value="Federalist">Federalist</option>
-          <option value="Democratic-Republican">Democratic-Republican</option>
-          <!-- <option value="National Republican">National Republican</option> -->
-          <option value="Democratic">Democratic</option>
-          <option value="Whig">Whig</option>
-          <option value="Republican">Republican</option>
-          <!-- <option value="National Union">National Union</option> -->
-          <!-- 
-
-
-          create a "parties" collection for use in the server.js
-
-
-           -->
-          <!-- <% parties.forEach(function(party, index) { %>
-            <option value="<%= index + 1 %>"><%= party.party %></option>
-          <% }); %> -->
+          <% parties.forEach(function(party, index) { %>
+            <option value="<%= party %>"><%= party %></option>
+          <% }); %>
         </select>
       </div>
       <div class="large-6 columns">

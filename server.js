@@ -8,8 +8,9 @@ const APP              = EXPRESS();
 const PORT             = process.env.PORT || 5000;
 const connectionString = process.env.DATABASE_URL || 'postgres://lphndjosiujnrb:c9bdf89e631fb1b26e8e594a6dec9184d9f75821c53469de13a61cdb55aaaee2@ec2-3-211-176-230.compute-1.amazonaws.com:5432/df2n0i8d9gh20?ssl=true';
 const { Pool }         = require('pg');
-const PRESIDENT        = require('./models/president.js');
+const PARTIES          = require('./collections/parties.js');
 const pool             = new Pool({connectionString: connectionString});
+let data;
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 // process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0' // Avoids DEPTH_ZERO_SELF_SIGNED_CERT error for self-signed certs
@@ -34,29 +35,47 @@ APP.get('/', (req, res) => {
                ON i.id = d.image_id
                JOIN party as p
                ON p.id = d.party_id`;
+    let _parties;
 
-    pool.query(sql, function(err, result) {
-        let pres = new PRESIDENT(result.rows);
-        // If an error occurred...
-        if (err) {
-            console.log('Error in query: ')
-            console.log(err);
-        }
+    if (!!data) {
+        _parties = new PARTIES(data);
 
-        // console.log({
-        //     route: '/',
-        //     result: result.rows
-        // });
-
-        // res.sendFile(PATH.join(__dirname + '/public/index.htm'));
         res.render('pages/index', {
             title: _title,
             details: _details,
             party: _party,
-            parties: result.rows,
-            presidents: result.rows
+            parties: _parties.getParties(),
+            presidents: data
         });
-    });
+    } else {
+        pool.query(sql, function(err, result) {
+            data = result.rows;
+            _parties = new PARTIES(data);
+
+            // If an error occurred...
+            if (err) {
+                console.log('Error in query: ')
+                console.log(err);
+            }
+
+            // console.log({
+            //     route: '/',
+            //     result: result.rows
+            // });
+
+            // res.sendFile(PATH.join(__dirname + '/public/index.htm'));
+            res.render('pages/index', {
+                title: _title,
+                details: _details,
+                party: _party,
+                parties: _parties.getParties(),
+                presidents: result.rows
+            });
+            console.log({
+                data: false
+            });
+        });
+    }
 });
 
 APP.get('/getPresident', function(req, res) {
@@ -103,6 +122,7 @@ APP.get('/getPresidentsByParty', function(req, res) {
                    ON p.id = d.party_id
                    WHERE p.party = $1`;
     let _values = [_id];
+    // let parties = new PARTIES(data);
 
     pool.query(_sql, _values, function(err, result) {
         // var pres = new PRESIDENT(result.rows[0]);
