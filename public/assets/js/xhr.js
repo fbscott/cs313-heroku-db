@@ -78,8 +78,12 @@ PRES.presByPartyTemplate = data => {
  *****************************************************************************/
 PRES.showPresDetails = (route, id = '') => {
     PRES.input = id || document.getElementById('president').value;
-    PRES.presDetailsContainer = document.getElementById('result');
-    PRES.getData(route, PRES.presDetailsTemplate);
+    if (!!PRES.input) {
+        PRES.presDetailsContainer = document.getElementById('result');
+        PRES.getData(route, PRES.presDetailsTemplate);
+    } else {
+        alert('Please select a president.');
+    }
 };
 
 /******************************************************************************
@@ -88,6 +92,10 @@ PRES.showPresDetails = (route, id = '') => {
  *****************************************************************************/
 PRES.showPresByParty = route => {
     PRES.input = document.getElementById('party').value;
-    PRES.presDetailsContainer = document.getElementById('result');
-    PRES.getData(route, PRES.presByPartyTemplate);
+    if (!!PRES.input) {
+        PRES.presDetailsContainer = document.getElementById('result');
+        PRES.getData(route, PRES.presByPartyTemplate);
+    } else {
+        alert('Please select a party.');
+    }
 };

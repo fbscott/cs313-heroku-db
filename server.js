@@ -69,7 +69,7 @@ APP.get('/', (req, res) => {
                 details: _details,
                 party: _party,
                 parties: _parties.getParties(),
-                presidents: result.rows
+                presidents: data
             });
             console.log({
                 data: false

@@ -13,7 +13,7 @@
   <div class="row">
     <form action="/getPresident" method="get">
       <div class="large-6 columns">
-        <select name="" id="president">
+        <select name="" id="president" required>
           <option value="" selected="true" disabled> -- </option>
           <% presidents.forEach(function(president, index) { %>
             <option value="<%= index + 1 %>"><%= president.first %> <%= president.middle %> <%= president.last %></option>
@@ -35,7 +35,7 @@
   <div class="row">
     <form action="/getPresidentsByParty" method="get">
       <div class="large-6 columns">
-        <select name="" id="party">
+        <select name="" id="party" required>
           <option value="" selected="true" disabled> -- </option>
           <% parties.forEach(function(party, index) { %>
             <option value="<%= party %>"><%= party %></option>
