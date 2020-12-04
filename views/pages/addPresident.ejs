@@ -1,0 +1,46 @@
+<%- include('../partials/header.ejs') %>
+  <title><%= title %></title>
+</head>
+<body>
+
+  <div class="row">
+    <div class="column large-10">
+      <h1><%= title %></h1>
+      <p><%= description %></p>
+    </div>
+    <div class="columns large-2">
+      <%- include('../partials/home.ejs') %>
+    </div>
+  </div>
+
+  <form action="/setPresident" action="get">
+    <div class="row">
+      <div class="columns large-4">
+        <input id="first" type="text" placeholder="first" />
+      </div>
+      <div class="columns large-4">
+        <input id="last" type="text" placeholder="last" />
+      </div>
+      <div class="columns large-4">
+        <select name="" id="party" required>
+          <option value="" selected="true" disabled> -- </option>
+          <% parties.forEach(function(party, index) { %>
+            <option value="<%= index + 1 %>"><%= party %></option>
+          <% }); %>
+        </select>
+      </div>
+    </div><!-- END SET PARTY -->
+    <div class="row">
+      <div class="columns">
+        <button type="button" onClick="PRES.addPresident('/setPresident')" name="button">Add</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="row">
+    <div id="result" class="column"></div>
+  </div>
+
+  <%- include('../partials/xhr.ejs') %>
+</body>
+</html>

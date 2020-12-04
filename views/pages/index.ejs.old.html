@@ -1,0 +1,81 @@
+<%- include('../partials/header.ejs') %>
+  <title><%= title %></title>
+</head>
+<body>
+
+  <div class="row">
+    <div class="column">
+      <h1><%= title %></h1>
+      <p><%= details %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <form action="/getPresident" method="get">
+      <div class="large-6 columns">
+        <select name="" id="president" required>
+          <option value="" selected="true" disabled> -- </option>
+          <% presidents.forEach(function(president, index) { %>
+            <option value="<%= president.president_id %>"><%= president.first %> <%= president.middle %> <%= president.last %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="large-6 columns">
+        <button type="button" onClick="PRES.getPresDetails('/getPresident')" name="button">Details</button>
+      </div>
+    </form>
+  </div><!-- END GET PRES -->
+
+  <div class="row">
+    <div class="column">
+      <p><%= party %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <form action="/getPresidentsByParty" method="get">
+      <div class="large-6 columns">
+        <select name="" id="party" required>
+          <option value="" selected="true" disabled> -- </option>
+          <% parties.forEach(function(party, index) { %>
+            <option value="<%= party %>"><%= party %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="large-6 columns">
+        <button type="button" onClick="PRES.getPresByParty('/getPresidentsByParty')" name="button">Party</button>
+      </div>
+    </form>
+  </div><!-- END GET PARTY -->
+
+  <div class="row">
+    <div class="column">
+      <p>Add Joe Biden as next president to database.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <form action="/setPresident" action="get">
+      <div class="column">
+        <div class="row">
+          <div class="columns large-6">
+            <input id="first" type="text" placeholder="first" />
+          </div>
+          <div class="columns large-6">
+            <input id="last" type="text" placeholder="last" />
+          </div>
+        </div>
+      </div>
+      <div class="large-6 columns">
+        <button type="button" onClick="PRES.setPresident('/setPresident')" name="button">Add</button>
+      </div>
+    </form>
+  </div><!-- END SET PARTY -->
+
+  <div class="row">
+    <div id="result" class="column"></div>
+  </div>
+
+  <%- include('../partials/xhr.ejs') %>
+</body>
+</html>

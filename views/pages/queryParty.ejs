@@ -1,0 +1,38 @@
+<%- include('../partials/header.ejs') %>
+  <title><%= title %></title>
+</head>
+<body>
+
+  <div class="row">
+    <div class="column large-10">
+      <h1><%= title %></h1>
+      <p><%= description %></p>
+    </div>
+    <div class="columns large-2">
+      <%- include('../partials/home.ejs') %>
+    </div>
+  </div>>
+
+  <form action="/getPresidentsByParty" method="get">
+    <div class="row">
+      <div class="large-6 columns">
+        <select name="" id="party" required>
+          <option value="" selected="true" disabled> -- </option>
+          <% parties.forEach(function(party) { %>
+            <option value="<%= party %>"><%= party %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="large-6 columns">
+        <button type="button" onClick="PRES.getPresByParty('/getPresidentsByParty')" name="button">Party</button>
+      </div>
+    </div><!-- END GET PARTY -->
+  </form>
+
+  <div class="row">
+    <div id="result" class="column"></div>
+  </div>
+
+  <%- include('../partials/xhr.ejs') %>
+</body>
+</html>

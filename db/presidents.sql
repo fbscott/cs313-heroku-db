@@ -94,6 +94,7 @@ INSERT INTO party (id, party) VALUES (default, 'Republican');
 INSERT INTO party (id, party) VALUES (default, 'National Union');
 
 -- add images
+INSERT INTO image (id, image) VALUES (default, 'seal.jpg');
 INSERT INTO image (id, image) VALUES (default, 'abraham_lincoln.jpg');
 INSERT INTO image (id, image) VALUES (default, 'andrew_jackson.jpg');
 INSERT INTO image (id, image) VALUES (default, 'andrew_johnson.jpg');
@@ -140,51 +141,51 @@ INSERT INTO image (id, image) VALUES (default, 'woodrow_wilson.jpg');
 INSERT INTO image (id, image) VALUES (default, 'zachary_taylor.jpg');
 
 -- add details
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 1, 1, 15);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 2, 2, 26);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 3, 3, 37);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 4, 3, 22);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 5, 3, 23);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 6, 3, 28);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 7, 5, 2);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 8, 5, 31);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 9, 6, 40);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 10, 6, 29);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 11, 5, 24);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 12, 6, 44);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 13, 6, 32);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 14, 5, 11);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 15, 5, 20);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 16, 7, 1);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 17, 5, 3);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 18, 7, 38);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 19, 7, 35);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 20, 7, 21);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 21, 7, 8);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 22, 5, 17);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 23, 7, 5);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 24, 5, 17);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 25, 7, 41);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 26, 7, 36);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 27, 7, 42);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 28, 5, 43);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 29, 7, 39);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 30, 7, 7);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 31, 7, 19);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 32, 5, 12);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 33, 5, 18);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 34, 7, 10);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 35, 5, 27);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 36, 5, 30);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 37, 7, 33);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 38, 7, 16);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 39, 5, 25);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 40, 7, 34);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 41, 7, 13);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 42, 5, 6);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 43, 7, 14);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 44, 5, 4);
-INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 45, 7, 9);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 1, 1, 16);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 2, 2, 27);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 3, 3, 38);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 4, 3, 23);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 5, 3, 24);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 6, 3, 29);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 7, 5, 3);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 8, 5, 32);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 9, 6, 41);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 10, 6, 30);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 11, 5, 25);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 12, 6, 45);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 13, 6, 33);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 14, 5, 12);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 15, 5, 21);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 16, 7, 2);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 17, 5, 4);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 18, 7, 39);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 19, 7, 36);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 20, 7, 22);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 21, 7, 9);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 22, 5, 18);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 23, 7, 6);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 24, 5, 18);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 25, 7, 42);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 26, 7, 37);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 27, 7, 43);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 28, 5, 44);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 29, 7, 40);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 30, 7, 8);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 31, 7, 20);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 32, 5, 13);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 33, 5, 19);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 34, 7, 11);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 35, 5, 28);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 36, 5, 31);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 37, 7, 34);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 38, 7, 17);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 39, 5, 26);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 40, 7, 35);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 41, 7, 14);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 42, 5, 7);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 43, 7, 15);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 44, 5, 5);
+INSERT INTO details (id, president_id, party_id, image_id) VALUES (default, 45, 7, 10);
 
 -- query
 SELECT first, last, party, image
@@ -196,3 +197,17 @@ ON i.id = d.image_id
 JOIN party as p
 ON p.id = d.party_id
 WHERE pres.id = 1;
+
+WITH data(first, middle, last, party_id, image) AS (
+   VALUES ('Homer', 'J', 'Simpson', 3, 1)
+),
+ins1 AS (
+   INSERT INTO president (first, middle, last)
+   SELECT first, middle, last
+   FROM data
+   RETURNING first, middle, last, id AS president_id
+)
+INSERT INTO details (president_id, party_id, image_id)
+SELECT ins1.president_id, d.party_id, d.image
+FROM data AS d
+JOIN ins1 USING (first, middle, last);

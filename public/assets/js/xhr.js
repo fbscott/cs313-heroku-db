@@ -26,8 +26,26 @@ PRES.getData = (url, callback) => {
     _xhr.send();
 };
 
+PRES.setData = (url, callback) => {
+    // placeholder while loading
+    PRES.presDetailsContainer.innerHTML = `<div class="spinner"></div>`;
+
+    let _xhr = new XMLHttpRequest();
+
+    _xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+            // pass the parsed response to the DOM loader
+            callback({first: PRES.first, last: PRES.last});
+        }
+    };
+
+    _xhr.open('GET', url + '?first=' + PRES.first + '&last=' + PRES.last + '&party=' + PRES.party, true);
+    _xhr.send();
+};
+
 /******************************************************************************
- * PRESIDENT DETAILS
+ * TEMPLATE - PRESIDENT DETAILS
  * @param  {Object} data - parsed JSON object array
  *****************************************************************************/
 PRES.presDetailsTemplate = data => {
@@ -39,7 +57,6 @@ PRES.presDetailsTemplate = data => {
                     </tr>`;
 
     for (var i = 0; i < data.length; i++) {
-        document.getElementById('result').innerHTML += 'President: ' + data[i]['first'] + ' ' + data[i]['last'];
         _table += `<tr>
                      <td>${data[i]['first']} ${data[i]['middle']} ${data[i]['last']}</td>
                      <td>${data[i]['party']}</td>
@@ -53,16 +70,15 @@ PRES.presDetailsTemplate = data => {
 };
 
 /******************************************************************************
- * PRESIDENTS BY PARTY
+ * TEMPLATE - PRESIDENTS BY PARTY
  * @param  {Object} data - parsed JSON object array
  *****************************************************************************/
 PRES.presByPartyTemplate = data => {
     let _list = `<ul>`;
 
     for (var i = 0; i < data.length; i++) {
-        document.getElementById('result').innerHTML += 'President: ' + data[i]['first'] + ' ' + data[i]['last'];
         _list += `<li>
-                    ${data[i]['first']} ${data[i]['middle']} ${data[i]['last']} <a href="javascript:void(0);" onClick="PRES.showPresDetails('/getPresident', '${data[i]['president_id']}');">View Details</a>
+                    ${data[i]['first']} ${data[i]['middle']} ${data[i]['last']} <a href="javascript:void(0);" onClick="PRES.getPresDetails('/getPresident', '${data[i]['president_id']}');">View Details</a>
                   </li>`
     }
 
@@ -72,12 +88,21 @@ PRES.presByPartyTemplate = data => {
 };
 
 /******************************************************************************
- * SHOW PRESIDENT DETAILS
+ * TEMPLATE - ADD PRESIDENT TO DATABASE
+ * @param  {Object} data - parsed JSON object array
+ *****************************************************************************/
+PRES.presAddPresTemplate = data => {
+    PRES.presDetailsContainer.innerHTML = `<p class="margin-top-2">${data.first} ${data.last} has been added to the database.</p>`;
+};
+
+/******************************************************************************
+ * GET PRESIDENT DETAILS
  * @param  {String} route - route
  * @param  {String} id    - president id in database
  *****************************************************************************/
-PRES.showPresDetails = (route, id = '') => {
+PRES.getPresDetails = (route, id = '') => {
     PRES.input = id || document.getElementById('president').value;
+
     if (!!PRES.input) {
         PRES.presDetailsContainer = document.getElementById('result');
         PRES.getData(route, PRES.presDetailsTemplate);
@@ -87,15 +112,41 @@ PRES.showPresDetails = (route, id = '') => {
 };
 
 /******************************************************************************
- * SHOW PRESIDENTS BY PARTY AFFILIATION
+ * GET PRESIDENTS BY PARTY AFFILIATION
  * @param  {String} route - route
  *****************************************************************************/
-PRES.showPresByParty = route => {
+PRES.getPresByParty = route => {
     PRES.input = document.getElementById('party').value;
+
     if (!!PRES.input) {
         PRES.presDetailsContainer = document.getElementById('result');
         PRES.getData(route, PRES.presByPartyTemplate);
     } else {
         alert('Please select a party.');
     }
+};
+
+/******************************************************************************
+ * ADD PRESIDENT
+ * @param  {String} route - route
+ *****************************************************************************/
+PRES.addPresident = route => {
+    PRES.first = document.getElementById('first').value;
+    PRES.last  = document.getElementById('last').value;
+    PRES.party = document.getElementById('party').value;
+
+    if (PRES.first && PRES.last && PRES.party) {
+        PRES.presDetailsContainer = document.getElementById('result');
+        PRES.setData(route, PRES.presAddPresTemplate);
+    } else {
+        alert('Please complete all fields.');
+    }
+};
+
+/******************************************************************************
+ * GET ROUTE
+ * @param  {String} route - route
+ *****************************************************************************/
+PRES.getRoute = route => {
+    location.href = route;
 };
