@@ -170,7 +170,7 @@ APP.get('/setPresident', function(req, res) {
     });
     let _values  = [_first, _last];
     const _sql = `WITH data(first, middle, last, party_id, image) AS (
-                     VALUES ($1, '', $2, 5, 1)
+                     VALUES ($1, '', $2, 4, 1)
                   ),
                   ins1 AS (
                      INSERT INTO president (first, middle, last)
